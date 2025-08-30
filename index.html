@@ -68,7 +68,7 @@
 <body>
 <canvas id="stars"></canvas>
 <div id="message"></div>
-<button id="music-btn">▶️ Reproducir</button>
+<button id="music-btn">▶️</button>
 
 <audio id="bg-music" loop>
   <source src="mygirl.mp3" type="audio/mpeg">
@@ -93,11 +93,11 @@ musicBtn.addEventListener("click", async ()=>{
   if(!playing){
     await audio.play();
     playing = true;
-    musicBtn.textContent = '⏸️ Pausar';
+    musicBtn.textContent = '⏸️';
   } else {
     audio.pause();
     playing = false;
-    musicBtn.textContent = '▶️ Reproducir';
+    musicBtn.textContent = '▶️';
   }
 });
 
@@ -195,13 +195,18 @@ function showMessage(){
     span.className='line';
     messageEl.appendChild(span);
     setTimeout(()=>{
-      span.style.opacity=1;
-      span.style.transform='translateY(0)';
+      if(i === 0){
+        span.style.transition = 'opacity 2s ease, transform 2s ease';
+      }
+      span.style.opacity = 1;
+      span.style.transform = 'translateY(0)';
     }, i*800);
   });
 }
+
 
 setTimeout(showMessage,6000);
 </script>
 </body>
 </html>
+
